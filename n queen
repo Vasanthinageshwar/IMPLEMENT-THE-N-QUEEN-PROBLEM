@@ -1,0 +1,57 @@
+CODE:
+
+#include<stdio.h>;
+#include<math.h>;
+#include<stdlib.h>;
+int X[20],count;
+
+int main()
+{
+int n,i,j;
+void queen(int row,int n);
+printf(&quot;\nEnter number of Queens:&quot;);
+scanf(&quot;%d&quot;,&amp;n);
+queen(1,n);
+return 0;
+}
+
+void print(int n)
+{
+int i,j;
+printf(&quot;\n\nSolution %d:\n\n&quot;,++count);
+
+for(i=1;i&lt;=n;i++)
+printf(&quot;%d\t&quot;,X[i]);
+
+}
+int place(int row,int column)
+{
+int i;
+for(i=1;i&lt;=row-1;++i)
+{
+if(X[i]==column)
+return 0;
+else
+if(abs(X[i]-column)==abs(i-row))
+return 0;
+}
+
+return 1;
+}
+
+void queen(int row,int n)
+{
+int column;
+for(column=1;column&lt;=n;++column)
+{
+if(place(row,column))
+{
+
+X[row]=column;
+if(row==n)
+print(n);
+else
+queen(row+1,n);
+}
+}
+}
